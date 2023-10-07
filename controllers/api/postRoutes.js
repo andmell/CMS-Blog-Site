@@ -1,5 +1,6 @@
 const { User, Comment, Post } = require("../../models");
 const router = require("express").Router();
+const withAuth = require("../../auth");
 
 router.get("/", async (req, res) => {
   try {
@@ -26,7 +27,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // add withAuth helper
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
       ...req.body,
@@ -39,7 +40,7 @@ router.post("/", async (req, res) => {
 });
 
 // add withAuth helper
-router.post("/:id/comments", async (req, res) => {
+router.post("/:id/comments", withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create({
       ...req.body,
@@ -53,7 +54,7 @@ router.post("/:id/comments", async (req, res) => {
 });
 
 // Add withAuth helper, and ensure req.session.user_id = post.user_id
-router.put("/:id", async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   try {
     const findPost = await Post.findByPk(Number(req.params.id));
     console.log(req.session.user_id);
@@ -78,7 +79,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Add withAuth helper, and ensure req.session.user_id = post.user_id
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const posts = await Post.findByPk(Number(req.params.id));
     if (posts.user_id !== req.session.user_id) {

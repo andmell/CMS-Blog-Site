@@ -1,0 +1,23 @@
+<nav class="navbar is-primary">
+  <div class="container">
+    <div class="navbar-brand">
+      <a class="navbar-item title is 1" href="/">
+        Keeping up with the CodeDashians
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="/">Home</a> {{! This should not display when logged in. }}
+        {{#if logInStatus}}
+          <a id="logout" class="navbar-item">Log Out</a>
+        {{else}}
+        <a class="navbar-item" href="/login">Log In</a>
+        <a class="navbar-item" href="/register">Register</a> {{! This should not display when logged in. }}
+        {{/if}}
+        {{#if logInStatus}}
+        <script src="/js/logout.js" type="text/javascript"></script>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</nav>

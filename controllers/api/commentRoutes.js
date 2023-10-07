@@ -1,5 +1,6 @@
 const { User, Comment, Post } = require("../../models");
 const router = require("express").Router();
+const withAuth = require("../../auth");
 
 router.get("/", async (req, res) => {
     try {
@@ -23,7 +24,7 @@ router.get("/", async (req, res) => {
   
   
   // Add withAuth helper, and ensure req.session.user_id = post.user_id
-  router.put("/:id", async (req, res) => {
+  router.put("/:id", withAuth, async (req, res) => {
     try {
       const comments = await Comment.findByPk(Number(req.params.id));
       if (comments.user_id !== req.session.user_id) {
@@ -43,7 +44,7 @@ router.get("/", async (req, res) => {
   });
   
   // Add withAuth helper, and ensure req.session.user_id = post.user_id
-  router.delete("/:id", async (req, res) => {
+  router.delete("/:id", withAuth, async (req, res) => {
     try {
       const comments = await Comment.findByPk(Number(req.params.id));
       if (comments.user_id !== req.session.user_id) {
