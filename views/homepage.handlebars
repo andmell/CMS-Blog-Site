@@ -1,13 +1,40 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../public/Stylesheets/main.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="../public/Stylesheets/main.css" />
     <title>Home</title>
-</head>
-<body>
-    
-</body>
+  </head>
+  <body>
+    {{#each posts as |post|}}
+    <a href="/api/posts/{{post.id}}">
+    <section id="allPosts">
+        <h1 class="title">{{post.title}}</h1>
+        <h2 class="subtitle">{{post.body}}</h2>
+    </section>
+    </a>
+    {{/each}}
+
+    {{!-- <main class="section">
+      <article class="media">
+        <div class="media-content">
+            {{#each posts as |post|}}
+          <div class="content">
+            <p>
+              <strong>{{post.title}}</strong>
+              <br />
+              {{post.body}}
+              <br />
+            </p>
+          </div>
+          {{/each}} --}}
+        </div>
+      </article>
+    </main>
+
+  </body>
 </html>

@@ -27,6 +27,10 @@
     color: white;
   }
   
+  #allPosts {
+    padding: 25px;
+  }
+
   .button.is-primary:hover, .button.is-link:hover {
     background-color: var(--color-secondary);
     border-color: transparent;
@@ -59,4 +63,5 @@
   .footer a:hover {
     color: var(--color-secondary);
   }
+  
   

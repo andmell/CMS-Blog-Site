@@ -13,16 +13,42 @@ router.get("/", async (req, res) => {
   }
 });
 
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const postData = await Post.findByPk(Number(req.params.id), {
+//       include: [
+//         {
+//           model: Comment,
+//           include: [{ model: User, attributes: ["username"] }],
+//         },
+//       ],
+//     });
+
+//     if (!postData) {
+//       return res.status(400).json({ message: "Post not found" });
+//     }
+
+//     res.render("post", { postData });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
 router.get("/:id", async (req, res) => {
   try {
-    const posts = await Post.findByPk(Number(req.params.id), {
-      include: [Comment],
+    const postData = await Post.findByPk(Number(req.params.id), {
+      include: [{model: Comment,
+      include: [{model: User, attributes: ["username"]}]
+    }],
     });
-    if (!posts) {
+    const posts = [postData].map((post) => post.get({plain: true}))
+    if (!postData) {
       return res.status(400).json({ message: "Post not found" });
-    } else res.status(200).json(posts);
+    } else res.render('post', {posts});
+    // res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
+    console.log(err);
   }
 });
 
@@ -44,8 +70,8 @@ router.post("/:id/comments", withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create({
       ...req.body,
-      post_id:Number(req.params.id),
-      user_id:req.session.user_id,
+      post_id: Number(req.params.id),
+      user_id: req.session.user_id,
     });
     res.status(200).json(newComment);
   } catch (err) {
@@ -61,7 +87,7 @@ router.put("/:id", withAuth, async (req, res) => {
     console.log(findPost.user_id);
     console.log(findPost);
     if (findPost.user_id !== req.session.user_id) {
-      res.status(403).json({ message: "That post is not yours." })
+      res.status(403).json({ message: "That post is not yours." });
       return;
     }
 
@@ -83,7 +109,7 @@ router.delete("/:id", withAuth, async (req, res) => {
   try {
     const posts = await Post.findByPk(Number(req.params.id));
     if (posts.user_id !== req.session.user_id) {
-      res.status(403).json({ message: "That post is not yours." })
+      res.status(403).json({ message: "That post is not yours." });
       return;
     }
     if (!posts) {
