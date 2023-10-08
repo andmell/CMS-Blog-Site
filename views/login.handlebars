@@ -1,0 +1,26 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Login, Sis!</h1>
+    <form action="api/users/login" method="post" class="box"> {{! Changed the action of this form element to match the post route for login on the backend. }}
+      <div class="field">
+        <label class="label" for="username">Username</label>
+        <div class="control">
+          <input class="input" type="text" id="username" name="username" required>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="password">Password</label>
+        <div class="control">
+          <input class="input" type="password" id="password" name="password" required>
+        </div>
+      </div>
+      <div class="field">
+        <div class="control">
+          <button class="button is-link" type="submit">Log In</button> {{! Added a type="submit" to use this button to run out post request to the login route in login.js (Relevant lines: 6-9, 19)}}
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script src="/js/login.js"></script> {{! Added a script element to link the login.js file to allow the user to successfully complete the post request and log in. }}

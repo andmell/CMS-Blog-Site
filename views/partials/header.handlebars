@@ -1,4 +1,4 @@
-<nav class="navbar is-primary">
+<nav class="navbar">
   <div class="container">
     <div class="navbar-brand">
       <a class="navbar-item title is 1" href="/">
@@ -9,9 +9,12 @@
       <div class="navbar-end">
         <a class="navbar-item" href="/">Home</a> {{! This should not display when logged in. }}
         {{#if logInStatus}}
+          <button id="dashboard" class="button, navbar-item" href="/dashboard">Dashboard</button>
+          
+          {{!-- <a id="dashboard" class="navbar-item" href="/dashboard">Dashboard</a> --}}
           <a id="logout" class="navbar-item">Log Out</a>
         {{else}}
-        <a class="navbar-item" href="/login">Log In</a>
+        <a class="navbar-item" href="/login">Log In</a> 
         <a class="navbar-item" href="/register">Register</a> {{! This should not display when logged in. }}
         {{/if}}
         {{#if logInStatus}}

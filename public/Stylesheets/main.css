@@ -3,17 +3,60 @@
     --color-secondary: #6FB3B8;
     --color-complimentary: #BADFE7;
     --color-alternative: #C2EDCE;
-    --color-offwhite: #F6F6F2;
+    --color-white: #ffffff;
 }
 
-body {
+  /* Background color for the main body */
+  body {
     background-color: var(--color-complimentary);
-}
-
-.navbar {
-    background-color: var(--color-primary);
-}
-
-.navbar-item:hover, .navbar-link:hover {
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: var(--color-white);
+  }
+  
+  .navbar-item:hover, .navbar-link:hover {
     background-color: var(--color-secondary);
-}
+  }
+  
+  /* Buttons */
+  .button.is-primary, .button.is-link {
+    background-color: var(--color-primary);
+    border-color: transparent;
+    color: white;
+  }
+  
+  .button.is-primary:hover, .button.is-link:hover {
+    background-color: var(--color-secondary);
+    border-color: transparent;
+  }
+  
+  /* Form Box */
+  .box {
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  /* Tiles (if you use them) */
+  .tile.is-ancestor:not(.is-vertical) > .tile.is-parent:hover {
+    background-color: var(--color-secondary);
+    color: white;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: var(--color-primary);
+    color: white;
+  }
+  
+  .footer a {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  .footer a:hover {
+    color: var(--color-secondary);
+  }
+  

@@ -1,21 +1,33 @@
 const router = require("express").Router();
-const {Post} = require("../models");
+const {Post, User} = require("../models");
 
 router.get('/', async (req, res) => {
     try {
-        // const logInStatus = req.session.logged_in;
-        const postData = await Post.findall({
-            attributes: {include: ["title"], exclude: ["body"]},
-            order: [["createdAt", "DES"]]
+        const logInStatus = req.session.logged_in;
+        const postData = await Post.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                }
+            
+            ],
+            order: [["createdAt", "DESC"]]
         });
             const posts = postData.map((post) => post.get({ plain: true }));
 
-            res.status(200).json(posts);
+            res.render('homepage', {logInStatus, posts});
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Interal server error"})
     }
 });
+router.get('/login', async (req,res) => {
+    res.render('login', {layout: 'main'}); 
+  });
 
+router.get('/register', async (req, res) => {
+    res.render('register', {layout: 'main'});
+})
 
 module.exports = router;
