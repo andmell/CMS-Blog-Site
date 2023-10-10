@@ -36,6 +36,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
+    const logInStatus = req.session.logged_in;
     const postData = await Post.findByPk(Number(req.params.id), {
       include: [{model: Comment,
       include: [{model: User, attributes: ["username"]}]
@@ -44,7 +45,7 @@ router.get("/:id", async (req, res) => {
     const posts = [postData].map((post) => post.get({plain: true}))
     if (!postData) {
       return res.status(400).json({ message: "Post not found" });
-    } else res.render('post', {posts});
+    } else res.render('post', {posts, logInStatus});
     // res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);

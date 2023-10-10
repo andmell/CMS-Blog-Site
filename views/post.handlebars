@@ -1,37 +1,3 @@
-{{!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="../public/Stylesheets/main.css" />
-    <title>View Post</title>
-</head>
-<body>
-    <main class="section">
-         {{#with post}}
-        <h1 class="title">{{title}}</h1>
-        <h2 class="subtitle">{{body}}</h2>
-        {{/with}}
-    </main>
-    <article class="media">
-        {{#each comments as |comment|}}
-        <div class="media-content">
-            <div class="content">
-                <p><strong>{{user.username}}</strong>
-                <br>
-                {{comment.body}}
-                </p>
-            </div>
-        </div>
-        {{/each}}
-    </article>
-</body>
-</html> --}}
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -46,23 +12,27 @@
   <body>
     <main class="section">
       {{#each posts}}
+        <h2>Created by {{user.username}} on {{this.createdAt}}</h2>
         <h1 class="title">{{this.title}}</h1>
-        <h2 class="subtitle">{{this.body}}</h2>
+        <h3 class="subtitle">{{this.body}}</h3>
         <article class="media">
-          {{#each comments as |comment|}}
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <strong>{{user.username}}</strong>
-                  <br />
-                  {{comment.body}}
-                </p>
-              </div>
+          <div class="tile is-ancestor">
+            <div class="tile is-vertical">
+              {{#each comments as |comment|}}
+                <div class="media-content">
+                  <div class="content">
+                    <p>
+                      <strong>{{user.username}}</strong>
+                      <br />
+                      {{comment.body}}
+                    </p>
+                  </div>
+                </div>
+              {{/each}}
             </div>
-          {{/each}}
+          </div>
         </article>
       {{/each}}
     </main>
-
   </body>
 </html>
