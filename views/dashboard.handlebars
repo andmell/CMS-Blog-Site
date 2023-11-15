@@ -13,19 +13,19 @@
   <body>
     {{#if posts.length}}
     <section>
-        <h2>Your Dashboard</h2>
-        <ul class="post-list">
+        <h2 class="title is-1" id="dashboard-title">Your Dashboard</h2>
+        <ul>
             {{#each posts as |post|}}
             <article>
                 <div>
                     <div>
                         <div>
-                            <a href="/api/posts/{{id}}" class="links">{{title}}</a>
+                            <p>
+                            You posted this on <b>{{created_at}}</b>
+                            </p>
                         </div>
                         <div>
-                            <p>
-                            Posted by <b>{{user.username}} </b> on <b>{{created_at}}</b>
-                            </p>
+                            <a href="/api/posts/{{id}}" class="links">{{title}}</a>
                         </div>
                     </div>
                     <div>
@@ -38,24 +38,23 @@
     </section>
     {{/if}}
     <section id="make-post">
-        <h2>Make a Post</h2>
+        <h2 class="title is-2" id="post-title">Make a Post</h2>
         <form action="/api/dashboard" method="POST">
             <div>
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" placeholder="Title" />
+                <input type="text" name="title" id="title" placeholder="Title" class="textarea is-primary is-large" rows="3" />
             </div>
             <div>
-                <label for="body">Content</label>
                 <textarea
                 name="body"
                 id="body"
-                cols="30"
-                rows="10"
+                cols="35"
+                rows="3"
                 placeholder="Content"
+                class="textarea is-primary"
                 ></textarea>
             </div>
             <div>
-                <button type="submit">Submit</button>
+                <button type="submit" class="button is-light">Submit</button>
             </div>
         </form>
     </section>

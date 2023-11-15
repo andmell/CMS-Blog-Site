@@ -64,7 +64,7 @@ router.post("/:id", withAuth, async (req, res) => {
       post_id: Number(req.params.id),
       user_id: req.session.user_id,
     });
-    res.status(200).json(newComment);
+    res.redirect(req.get('referer'));
   } catch (err) {
     res.status(500).json(err);
   }
@@ -89,7 +89,7 @@ router.put("/:id", withAuth, async (req, res) => {
     });
     if (updatedPost[0] === 0) {
       res.status(404).json({ message: "Post not found" });
-    } else res.status(200).json(updatedPost);
+    } else res.redirect(req.get('referer'));
   } catch (err) {
     res.status(500).json(err);
   }

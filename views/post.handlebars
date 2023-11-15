@@ -16,13 +16,13 @@
         <h1 class="title">{{this.title}}</h1>
         <h3 class="subtitle">{{this.body}}</h3>
         <article class="media">
-          <div class="tile is-ancestor">
-            <div class="tile is-vertical">
+          <div class="">
+            <div class="">
               {{#each comments as |comment|}}
                 <div class="media-content">
                   <div class="content">
                     <p>
-                      <strong>{{user.username}}</strong>
+                      <strong>{{user.username}} on {{this.createdAt}}</strong>
                       <br />
                       {{comment.body}}
                     </p>
@@ -36,22 +36,22 @@
         <h2>Make a Comment</h2>
         <form action="/api/posts/{{id}}" method="POST">
             <div>
-                <label for="body">Content</label>
                 <textarea
                 name="body"
                 id="body"
                 cols="30"
-                rows="2"
+                rows="1"
                 placeholder="Content"
+                class="textarea is-primary"
                 ></textarea>
             </div>
             <div>
-                <button type="submit">Submit</button>
+                <button type="submit" class="button is-light is-small">Submit</button>
             </div>
         </form>
     </section>
       {{/each}}
     </main>
-   
   </body>
+      <script src="../public/js/eqHelper.js"></script>
 </html>

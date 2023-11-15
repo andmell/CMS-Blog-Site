@@ -25,6 +25,11 @@ app.use(session(sess));
 app.set('view engine', 'handlebars');
 app.engine('handlebars', hbs.engine);
 
+const handlebars = exphbs.create({});
+handlebars.handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -44,3 +49,4 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
 });
+

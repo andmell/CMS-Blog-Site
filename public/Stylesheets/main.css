@@ -64,4 +64,12 @@
     color: var(--color-secondary);
   }
   
-  
+  #dashboard-title {
+    display: flex;
+    justify-content: center; 
+  }
+
+  #post-title {
+    display: flex;
+    justify-content: center; 
+  }
