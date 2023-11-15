@@ -9,7 +9,11 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const hbs = exphbs.create();
+// const hbs = exphbs.create();
+const hbs = expHandlebars.create({
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  helpers: { withAuth: require('./helpers/auth')}
+});
 
 const sess = {
   secret: 'Super secret secret',
@@ -24,11 +28,6 @@ const sess = {
 app.use(session(sess));
 app.set('view engine', 'handlebars');
 app.engine('handlebars', hbs.engine);
-
-const handlebars = exphbs.create({});
-handlebars.handlebars.registerHelper('ifEquals', function(arg1, arg2, options) {
-  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
