@@ -54,17 +54,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // add withAuth helper
-router.post("/", withAuth, async (req, res) => {
-  try {
-    const newPost = await Post.create({
-      ...req.body,
-      user_id: req.session.user_id,
-    });
-    res.status(200).json(newPost);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+
 
 // add withAuth helper
 router.post("/:id/comments", withAuth, async (req, res) => {
