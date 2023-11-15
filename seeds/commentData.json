@@ -1,0 +1,17 @@
+[
+    {
+        "body": "This is a tech blog...what are you doing here?",
+        "user_id": 2,
+        "post_id": 1
+    },
+    {
+        "body": "No kidding, huh.",
+        "user_id": 3,
+        "post_id": 2
+    },
+    {
+        "body": "Damn. That sucks.",
+        "user_id": 1,
+        "post_id": 3
+    }
+]

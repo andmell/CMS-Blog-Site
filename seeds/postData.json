@@ -1,0 +1,20 @@
+[
+    {
+        "user_id": 1,
+        "title": "The Shawshank Redemption",
+        "body": "This is a great movie! I love it! It's the best!"
+        
+    },
+    {
+        "user_id": 2,
+        "title": "Coding with your eyes closed",
+        "body": "Has anyone ever tried this? I have and it's terrible!"
+        
+    },
+    {
+        "user_id": 3,
+        "title": "The anguished cries of a thousand souls",
+        "body": "I just dropped my company's database. I'm so fired."
+        
+    }
+]
