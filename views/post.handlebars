@@ -32,7 +32,26 @@
             </div>
           </div>
         </article>
+         <section id="make-Comment">
+        <h2>Make a Comment</h2>
+        <form action="/api/posts/{{id}}" method="POST">
+            <div>
+                <label for="body">Content</label>
+                <textarea
+                name="body"
+                id="body"
+                cols="30"
+                rows="2"
+                placeholder="Content"
+                ></textarea>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
       {{/each}}
     </main>
+   
   </body>
 </html>
