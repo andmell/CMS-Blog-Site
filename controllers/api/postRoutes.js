@@ -38,14 +38,15 @@ router.get("/:id", async (req, res) => {
   try {
     const logInStatus = req.session.logged_in;
     const postData = await Post.findByPk(Number(req.params.id), {
-      include: [{model: Comment,
-      include: [{model: User, attributes: ["username"]}]
-    }],
+      include: [
+        { model: Comment, include: [{ model: User }] },
+        { model: User },
+      ],
     });
-    const posts = [postData].map((post) => post.get({plain: true}))
+    const posts = [postData].map((post) => post.get({ plain: true }));
     if (!postData) {
       return res.status(400).json({ message: "Post not found" });
-    } else res.render('post', {posts, logInStatus});
+    } else res.render("post", { posts, logInStatus });
     // res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
@@ -55,7 +56,6 @@ router.get("/:id", async (req, res) => {
 
 // add withAuth helper
 
-
 // add withAuth helper
 router.post("/:id", withAuth, async (req, res) => {
   try {
@@ -64,7 +64,7 @@ router.post("/:id", withAuth, async (req, res) => {
       post_id: Number(req.params.id),
       user_id: req.session.user_id,
     });
-    res.redirect(req.get('referer'));
+    res.redirect(req.get("referer"));
   } catch (err) {
     res.status(500).json(err);
   }
@@ -89,7 +89,7 @@ router.put("/:id", withAuth, async (req, res) => {
     });
     if (updatedPost[0] === 0) {
       res.status(404).json({ message: "Post not found" });
-    } else res.redirect(req.get('referer'));
+    } else res.redirect(req.get("referer"));
   } catch (err) {
     res.status(500).json(err);
   }
