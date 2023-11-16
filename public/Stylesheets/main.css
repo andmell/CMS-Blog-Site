@@ -9,6 +9,7 @@
   /* Background color for the main body */
   body {
     background-color: var(--color-complimentary);
+    min-height: 100vh;
   }
   
   /* Navbar */
@@ -51,9 +52,14 @@
   
   /* Footer */
   .footer {
-    background-color: var(--color-primary);
+    background-color: #388087;
     color: white;
-  }
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+    
   
   .footer a {
     color: white;

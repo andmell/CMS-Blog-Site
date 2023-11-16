@@ -10,4 +10,4 @@ This test blog site allows users to view, create, and comment on posts that othe
  Bulma was used to style the interface of this website. This site also makes use of MySQL to handle all relational database concerns. Bcrypt is utilized to ensure user data is encrypted when being sent to and from the database, to allow for better user protection. Of course, this site also uses Sequelize object-relational mapping for the MySQL database, and Express as a web application framework for Node.js.
 
  ## Usage
- No installation is necessary. This website is deployed on Heroku
+ No installation is necessary. This website is deployed on Heroku [here](https://powerful-anchorage-88004-307e877c2bcf.herokuapp.com/). Please feel free to create an account and navigate throughout the site. 
