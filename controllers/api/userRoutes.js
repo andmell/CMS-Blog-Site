@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res) => { // POST a new user to the database and redirects to the homepage once posted.
     try {
         const user = await User.create(req.body);
         req.session.save(() => {
@@ -25,19 +25,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-// router.get('/:id/dashboard', async (req, res) => {
-//   try {
-//     const logInStatus = req.session.logged_in;
-//     const user = await User.findByPk(req.params.id, {
-//       include: [Post],
-//     });
-//     res.render('dashboard', {logInStatus, user})
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json({message: "Internal server error"})
-//   }
-// })
-router.get('/:id/dashboard', async (req, res) => {
+router.get('/:id/dashboard', async (req, res) => { // GET a single user by its ID and renders the dashboard with the user found. Typically used for the user to view their own dashboard.
   try {
     const logInStatus = req.session.logged_in;
     const user = await User.findByPk(req.params.id, {
@@ -50,7 +38,7 @@ router.get('/:id/dashboard', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => { // POST a login request to the database and redirects to the homepage once logged in.
   try {
     const userInfo = await User.findOne({
       where: { username: req.body.username },
@@ -81,7 +69,7 @@ router.post('/login', async (req, res) => {
   }
 })
 
-router.post('/logout', (req, res) => {
+router.post('/logout', (req, res) => { // POST a logout request to the database and redirects to the homepage once logged out.
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();

@@ -1,4 +1,3 @@
-
 const pageRedirectLogin = async () => {
     location.href = `${window.location}login`
 }

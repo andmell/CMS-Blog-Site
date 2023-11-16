@@ -13,28 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/:id", async (req, res) => {
-//   try {
-//     const postData = await Post.findByPk(Number(req.params.id), {
-//       include: [
-//         {
-//           model: Comment,
-//           include: [{ model: User, attributes: ["username"] }],
-//         },
-//       ],
-//     });
-
-//     if (!postData) {
-//       return res.status(400).json({ message: "Post not found" });
-//     }
-
-//     res.render("post", { postData });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req, res) => { // GET a single post by its ID and renders the post page with the post found.
   try {
     const logInStatus = req.session.logged_in;
     const postData = await Post.findByPk(Number(req.params.id), {
@@ -47,16 +26,12 @@ router.get("/:id", async (req, res) => {
     if (!postData) {
       return res.status(400).json({ message: "Post not found" });
     } else res.render("post", { posts, logInStatus });
-    // res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
     console.log(err);
   }
 });
 
-// add withAuth helper
-
-// add withAuth helper
 router.post("/:id", withAuth, async (req, res) => {
   try {
     const newComment = await Comment.create({
@@ -70,7 +45,6 @@ router.post("/:id", withAuth, async (req, res) => {
   }
 });
 
-// Add withAuth helper, and ensure req.session.user_id = post.user_id
 router.put("/:id", withAuth, async (req, res) => {
   try {
     const findPost = await Post.findByPk(Number(req.params.id));
@@ -95,7 +69,6 @@ router.put("/:id", withAuth, async (req, res) => {
   }
 });
 
-// Add withAuth helper, and ensure req.session.user_id = post.user_id
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const posts = await Post.findByPk(Number(req.params.id));

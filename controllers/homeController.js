@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const {Post, User} = require("../models");
 
-router.get('/', async (req, res) => {
+router.get('/', async (req, res) => { // GET all posts in the database and renders the homepage with the posts found.
     try {
         const logInStatus = req.session.logged_in;
         const postData = await Post.findAll({
@@ -22,11 +22,11 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: "Interal server error"})
     }
 });
-router.get('/login', async (req,res) => {
+router.get('/login', async (req,res) => { // GET the login page and renders it.
     res.render('login', {layout: 'main'}); 
   });
 
-router.get('/register', async (req, res) => {
+router.get('/register', async (req, res) => { // GET the register page and renders it.
     res.render('register', {layout: 'main'});
 })
 

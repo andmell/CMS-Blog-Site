@@ -11,3 +11,13 @@ This test blog site allows users to view, create, and comment on posts that othe
 
  ## Usage
  No installation is necessary. This website is deployed on Heroku [here](https://powerful-anchorage-88004-307e877c2bcf.herokuapp.com/). Please feel free to create an account and navigate throughout the site. 
+
+ ![A photo of a website titled "keeping up with the CodeDashians", seemingly looking like a blog site](/public/assets/codashianreadme.PNG)
+
+ ## Credits
+ - The above packages were used to create this program. Additionally, refer to the package.json file to confirm the versions of each package. 
+ - Several tutoring sessions from [Jude Clark](https://github.com/judeclark19).
+ - Instruction from Washington University's Web Developer Boot-Camp
+
+ ## License
+ Please refer to the respective GitHub repository for licensing information.

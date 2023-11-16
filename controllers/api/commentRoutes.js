@@ -1,8 +1,8 @@
-const { User, Comment, Post } = require("../../models");
-const router = require("express").Router();
-const withAuth = require("../../auth");
+const { User, Comment, Post } = require("../../models"); // Import the models
+const router = require("express").Router(); // Import the Express.js router
+const withAuth = require("../../auth"); // Import the withAuth middleware
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res) => { // GET all comments in the database and sends them back as JSON
     try {
       const comments = await Comment.findAll();
       res.status(200).json(comments);
@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     }
   });
   
-  router.get("/:id", async (req, res) => {
+  router.get("/:id", async (req, res) => { // GET a single comment by its ID and sends it back as JSON
     try {
       const comments = await Comment.findByPk(Number(req.params.id));
       if (!comments) {
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
   
   
   // Add withAuth helper, and ensure req.session.user_id = post.user_id
-  router.put("/:id", withAuth, async (req, res) => {
+  router.put("/:id", withAuth, async (req, res) => { // PUT update a comment by its ID and sends it back as JSON. Will add functionality in a future update
     try {
       const comments = await Comment.findByPk(Number(req.params.id));
       if (comments.user_id !== req.session.user_id) {
@@ -43,8 +43,7 @@ router.get("/", async (req, res) => {
     }
   });
   
-  // Add withAuth helper, and ensure req.session.user_id = post.user_id
-  router.delete("/:id", withAuth, async (req, res) => {
+  router.delete("/:id", withAuth, async (req, res) => { // DELETE a comment by its ID and sends it back as JSON. Will add functionality in a future update
     try {
       const comments = await Comment.findByPk(Number(req.params.id));
       if (comments.user_id !== req.session.user_id) {
